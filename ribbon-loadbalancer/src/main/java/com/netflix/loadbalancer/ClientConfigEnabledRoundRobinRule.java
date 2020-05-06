@@ -20,8 +20,7 @@ package com.netflix.loadbalancer;
 import com.netflix.client.config.IClientConfig;
 
 /**
- * This class essentially contains the RoundRobinRule class defined in the
- * loadbalancer package
+ * 这个类本质上包含loadbalancer包中定义的RoundRobinRule类
  * 
  * @author stonse
  * 

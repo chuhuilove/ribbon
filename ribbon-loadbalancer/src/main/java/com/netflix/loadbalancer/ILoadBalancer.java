@@ -74,7 +74,7 @@ public interface ILoadBalancer {
     public List<Server> getReachableServers();
 
     /**
-     * @return All known servers, both reachable and unreachable.
+     * @return 所有已知的服务器,包括可访问的和不可访问的.
      */
 	public List<Server> getAllServers();
 }

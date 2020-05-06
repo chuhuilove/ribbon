@@ -23,9 +23,8 @@ import java.util.Random;
 import com.netflix.client.config.IClientConfig;
 
 /**
- * A loadbalacing strategy that randomly distributes traffic amongst existing
- * servers.
- * 
+ * 在现有服务器之间随机分配流量的负载平衡策略.
+ *
  * @author stonse
  * 
  */
@@ -37,7 +36,7 @@ public class RandomRule extends AbstractLoadBalancerRule {
     }
 
     /**
-     * Randomly choose from all living servers
+     * 从所有活跃的服务器中随机选择
      */
     @edu.umd.cs.findbugs.annotations.SuppressWarnings(value = "RCN_REDUNDANT_NULLCHECK_OF_NULL_VALUE")
     public Server choose(ILoadBalancer lb, Object key) {

@@ -22,12 +22,17 @@ import com.netflix.client.config.IClientConfig;
 /**
  * Given that
  * {@link IRule} can be cascaded, this {@link RetryRule} class allows adding a retry logic to an existing Rule.
+ *
+ * 鉴于{@link IRule}可以级联,此{@link RetryRule}类允许将重试逻辑添加到现有规则.
+ *
  * 
  * @author stonse
  * 
  */
 public class RetryRule extends AbstractLoadBalancerRule {
+
 	IRule subRule = new RoundRobinRule();
+
 	long maxRetryMillis = 500;
 
 	public RetryRule() {
@@ -70,7 +75,7 @@ public class RetryRule extends AbstractLoadBalancerRule {
 		subRule.setLoadBalancer(lb);
 	}
 
-	/*
+	/**
 	 * Loop if necessary. Note that the time CAN be exceeded depending on the
 	 * subRule, because we're not spawning additional threads and returning
 	 * early.

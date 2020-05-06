@@ -20,8 +20,13 @@ package com.netflix.loadbalancer;
 import java.util.List;
 
 /**
- * AbstractLoadBalancer contains features required for most loadbalancing
- * implementations.
+ *
+ * AbstractLoadBalancer包含大多数负载均衡实现所需的功能.
+ *
+ * 一个典型的LoadBalancer剖析包括:
+ * 1. 基于特定条件可能被捕获的服务器(节点)列表.
+ * 2. 通过<code>IRule</code>定义并实现loadbal策略的类
+ * 3. 定义并实现一种机制来确定列表中节点/服务器的适用性/可用性的类.
  * 
  * An anatomy of a typical LoadBalancer consists of 1. A List of Servers (nodes)
  * that are potentially bucketed based on a specific criteria. 2. A Class that
@@ -57,7 +62,7 @@ public abstract class AbstractLoadBalancer implements ILoadBalancer {
     public abstract List<Server> getServerList(ServerGroup serverGroup);
     
     /**
-     * Obtain LoadBalancer related Statistics
+     * 获取负载均衡相关的状态
      */
     public abstract LoadBalancerStats getLoadBalancerStats();    
 }

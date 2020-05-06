@@ -1,14 +1,14 @@
 Ribbon
 ======
 
-Ribbon is a client side IPC library that is battle-tested in cloud. It provides the following features
+Ribbon是客户端IPC库,该库在云中经过了实战测试。 它提供了下面的特性
 
-* Load balancing
-* Fault tolerance
-* Multiple protocol (HTTP, TCP, UDP) support in an asynchronous and reactive model
-* Caching and batching
+* 负载均衡
+* 容错能力
+* 异步和响应模型中的多种协议(HTTP,TCP,UDP)支持
+* 缓存和批处理
 
-To get ribbon binaries, go to [maven central](http://search.maven.org/#search%7Cga%7C1%7Cribbon). Here is an example to add dependency in Maven:
+获得ribbon二进制,去[maven中心仓库](http://search.maven.org/#search%7Cga%7C1%7Cribbon). Here is an example to add dependency in Maven:
 
 ```xml
 <dependency>
@@ -20,53 +20,54 @@ To get ribbon binaries, go to [maven central](http://search.maven.org/#search%7C
 
 ## Modules
 
-* ribbon: APIs that integrate load balancing, fault tolerance, caching/batching on top of other ribbon modules and [Hystrix](https://github.com/netflix/hystrix)
-* ribbon-loadbalancer: Load balancer APIs that can be used independently or with other modules
-* ribbon-eureka: APIs using [Eureka client](https://github.com/netflix/eureka) to provide dynamic server list for cloud
-* ribbon-transport: Transport clients that support HTTP, TCP and UDP protocols using [RxNetty](https://github.com/netflix/rxnetty) with load balancing capability
-* ribbon-httpclient: REST client built on top of Apache HttpClient integrated with load balancers (deprecated and being replaced by ribbon module)
-* ribbon-example: Examples
-* ribbon-core: Client configuration APIs and other shared APIs
+* ribbon: 在其他功能区模块和[Hystrix](https://github.com/netflix/hystrix)之上集成了负载平衡,容错,缓存/分批处理的API
+* ribbon-loadbalancer: 可以独立使用或与其他模块一起使用的负载平衡器API
+* ribbon-eureka: 使用[Eureka client](https://github.com/netflix/eureka)的API为云提供动态服务器列表
+* ribbon-transport: 使用具有负载平衡功能的[RxNetty](https://github.com/netflix/rxnetty),支持HTTP,TCP和UDP协议的传输客户端
+* ribbon-httpclient: REST客户端构建在Apache HttpClient之上，与负载平衡器集成(已弃用,并被ribbon模块取代)
+* ribbon-example: 示例
+* ribbon-core: 客户端配置API和其他共享API
 
-## Project Status: On Maintenance
-Ribbon comprises of multiple components some of which are used in production internally and some of which were replaced by non-OSS solutions over time.
-This is because Netflix started moving into a more componentized architecture for RPC with a focus on single-responsibility modules. So each Ribbon component gets a different level of attention at this moment.
+## 项目状态: 维护中
+Ribbon由多个组件组成,其中一些组件用于内部生产,另一些组件随着时间的推移被非oss解决方案所取代.
+这是因为Netflix开始转向面向RPC的更组件化的体系结构,并将重点放在单一职责模块上.因此,此时每个Ribbon组件都得到了不同程度的关注.
 
-More specifically, here are the components of Ribbon and their level of attention by our teams:
-* ribbon-core: **deployed at scale in production**
-* ribbon-eureka: **deployed at scale in production**
-* ribbon-evcache: **not used**
-* ribbon-guice: **not used**
-* ribbon-httpclient: **we use everything not under com.netflix.http4.ssl.
-                       Instead, we use an internal solution developed by our cloud security team**
-* ribbon-loadbalancer: **deployed at scale in production**
-* ribbon-test: **this is just an internal integration test suite**
-* ribbon-transport: **not used**
-* ribbon: **not used**
+更具体地说,以下是Ribbon的组成部分以及我们团队对它们的关注程度:
+* ribbon-core: **在生产中大规模部署**
+* ribbon-eureka: **在生产中大规模部署**
+* ribbon-evcache: **未使用**
+* ribbon-guice: **未使用**
+* ribbon-httpclient: **我们不使用com.netflix.http4.ssl.
+                        而是使用云安全团队开发的内部解决方案**
+* ribbon-loadbalancer: **在生产中大规模部署**
+* ribbon-test: **这只是一个内部集成测试套件**
+* ribbon-transport: **未使用**
+* ribbon: **未使用**
 
-Even for the components deployed in production we have wrapped them in a Netflix internal http client and we are not adding new functionality since they’ve been stable for a while.
- Any new functionality has been added to internal wrappers on top of Ribbon (such as request tracing and metrics). We have not made an effort to make those components Netflix-agnostic under Ribbon.
 
-Recognizing these realities and deficiencies, we are placing Ribbon in maintenance mode.
-This means that if an external user submits a large feature request, internally we wouldn’t prioritize it highly.
-However, if someone were to do work on their own and submit complete pull requests, we’d be happy to review and accept.
-Our team has instead started building an RPC solution on top of gRPC.
-We are doing this transition for two main reasons: multi-language support and better extensibility/composability through request interceptors.
-That’s our current plan moving forward.
+即使对于已在生产环境中部署的组件,我们也将它们包装在Netflix内部的http客户端中,并且由于它们已经稳定了一段时间,因此我们并未添加新功能.
+任何新功能都已经添加到Ribbon上的内部包装器中(例如请求跟踪和度量).我们尚未做出任何努力使Ribbon下的这些组件与Netflix无关.
 
-We currently contribute to the gRPC code base regularly.
-To help our teams migrate to a gRPC-based solution in production (and battle-test it),
-we are also adding load-balancing and discovery interceptors to achieve feature parity with the functionality Ribbon and Eureka provide.
-The interceptors are Netflix-internal at the moment. When we reach that level of confidence we hope to open-source this new approach.
-We don’t expect this to happen before Q3 of 2016.
+认识到这些现实和缺陷,我们将Ribbon置于维护模式.
+这意味着如果外部用户提交了一个大的特性请求,我们在内部不会对其进行优先级排序.
+但是，如果有人要自己完成工作并提交完整的拉请求,我们很乐意进行审查并接受.
+我们的团队已经开始在gRPC上构建RPC解决方案.
+我们进行这种转换主要有两个原因:多语言支持和通过请求拦截器实现更好的可扩展性/可组合性.
+那是我们当前的计划.
+
+我们目前定期向gRPC代码库贡献代码.
+为了帮助我们的团队在生产中迁移到基于grpc的解决方案(并进行实战测试),
+我们还添加了负载平衡和发现拦截器,以实现与Ribbon和Eureka提供的功能相同的功能.
+拦截器目前是netflix内部的.当我们达到那种信心时,我们希望开源这种新方法.
+我们预计这种情况不会在2016年第三季度之前发生.
 
 ## Release notes
 
 See https://github.com/Netflix/ribbon/releases
 
-## Code example
+## 代码示例
 
-### Access HTTP resource using template ([full example](https://github.com/Netflix/ribbon/blob/master/ribbon-examples/src/main/java/com/netflix/ribbon/examples/rx/template/RxMovieTemplateExample.java))
+### 使用模板访问HTTP资源 ([full example](https://github.com/Netflix/ribbon/blob/master/ribbon-examples/src/main/java/com/netflix/ribbon/examples/rx/template/RxMovieTemplateExample.java))
 
 ```java
 HttpResourceGroup httpResourceGroup = Ribbon.createHttpResourceGroup("movieServiceClient",
@@ -85,7 +86,7 @@ Observable<ByteBuf> result = recommendationsByUserIdTemplate.requestBuilder()
                         .observe();
 ```
 
-### Access HTTP resource using annotations ([full example](https://github.com/Netflix/ribbon/blob/master/ribbon-examples/src/main/java/com/netflix/ribbon/examples/rx/proxy/RxMovieProxyExample.java))
+### 使用注解访问HTTP资源 ([full example](https://github.com/Netflix/ribbon/blob/master/ribbon-examples/src/main/java/com/netflix/ribbon/examples/rx/proxy/RxMovieProxyExample.java))
 
 ```java
 public interface MovieService {
@@ -100,7 +101,7 @@ MovieService movieService = Ribbon.from(MovieService.class);
 Observable<ByteBuf> result = movieService.recommendationsByUserId("user1").observe();
 ```
 
-### Create an AWS-ready load balancer with [Eureka](https://github.com/Netflix/eureka) dynamic server list and zone affinity enabled
+### 创建一个启用了[Eureka](https://github.com/Netflix/eureka)动态服务器列表和区域关联的AWS-ready负载均衡器
 
 ```java
         IRule rule = new AvailabilityFilteringRule();
@@ -114,7 +115,7 @@ Observable<ByteBuf> result = movieService.recommendationsByUserId("user1").obser
         DiscoveryEnabledServer server = lb.chooseServer();         
 ```
 
-### Use LoadBalancerCommand to load balancing IPC calls made by HttpURLConnection ([full example](https://github.com/Netflix/ribbon/blob/master/ribbon-examples/src/main/java/com/netflix/ribbon/examples/loadbalancer/URLConnectionLoadBalancer.java))
+### 使用LoadBalancerCommand来负载HttpURLConnection发出的IPC调用 ([full example](https://github.com/Netflix/ribbon/blob/master/ribbon-examples/src/main/java/com/netflix/ribbon/examples/loadbalancer/URLConnectionLoadBalancer.java))
 
 ```java
 CommandBuilder.<String>newBuilder()
@@ -129,24 +130,6 @@ CommandBuilder.<String>newBuilder()
         }).execute();
 ```
 
-## License
+ 
 
-Copyright 2014 Netflix, Inc.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-## Questions?
-
-Email ribbon-users@googlegroups.com or [join us](https://groups.google.com/forum/#!forum/ribbon-users)
-
-
+ 

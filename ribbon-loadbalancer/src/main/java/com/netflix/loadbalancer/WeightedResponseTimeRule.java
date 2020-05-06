@@ -34,7 +34,10 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /** 
  * Rule that use the average/percentile response times
  * to assign dynamic "weights" per Server which is then used in 
- * the "Weighted Round Robin" fashion. 
+ * the "Weighted Round Robin" fashion.
+ *
+ * 使用平均/百分位响应时间为每个服务器分配动态"权重"的规则,然后以"加权循环"的方式使用.
+ *
  * <p>
  * The basic idea for weighted round robin has been obtained from JCS
  * The implementation for choosing the endpoint from the list of endpoints
