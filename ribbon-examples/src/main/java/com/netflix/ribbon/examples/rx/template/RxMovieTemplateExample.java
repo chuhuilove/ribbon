@@ -31,7 +31,7 @@ import io.reactivex.netty.channel.StringTransformer;
 import rx.Observable;
 
 /**
- * Run {@link com.netflix.ribbon.examples.rx.RxMovieServer} prior to runnng this example!
+ * 在运行此示例之前,请运行{@link com.netflix.ribbon.examples.rx.RxMovieServer}！
  *
  * @author Tomasz Bak
  */

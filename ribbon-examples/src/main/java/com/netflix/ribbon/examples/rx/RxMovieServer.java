@@ -43,7 +43,7 @@ import rx.functions.Func1;
 import static java.lang.String.*;
 
 /**
- * The client examples assume that the movie server runs on the default port 8080.
+ * 客户端示例假定影片服务器在默认端口8080上运行.
  *
  * @author Tomasz Bak
  */

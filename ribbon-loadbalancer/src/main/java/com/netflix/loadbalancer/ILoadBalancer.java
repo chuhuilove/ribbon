@@ -20,11 +20,9 @@ package com.netflix.loadbalancer;
 import java.util.List;
 
 /**
- * Interface that defines the operations for a software loadbalancer. A typical
- * loadbalancer minimally need a set of servers to loadbalance for, a method to
- * mark a particular server to be out of rotation and a call that will choose a
- * server from the existing list of server.
- * 
+ * 定义软件负载均衡器操作的接口.
+ * 典型的负载平衡器最少需要一组服务器来进行负载平衡,一种将特定服务器标记为不可用的方法,
+ * 以及从现有服务器列表中选择服务器的调用.
  * @author stonse
  * 
  */

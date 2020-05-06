@@ -21,9 +21,10 @@ import com.netflix.ribbon.http.HttpResourceGroup.Builder;
 import com.netflix.ribbon.proxy.processor.AnnotationProcessorsProvider;
 
 /**
- * A class that can be used to create {@link com.netflix.ribbon.http.HttpResourceGroup}, {@link com.netflix.ribbon.http.HttpResourceGroup.Builder},
- * and dynamic proxy of service interfaces. It delegates to a default {@link com.netflix.ribbon.RibbonResourceFactory} to do the work.
- * For better configurability or in DI enabled application, it is recommended to use {@link com.netflix.ribbon.RibbonResourceFactory} directly.
+ *
+ * 这个类可以被用来创建{@link com.netflix.ribbon.http.HttpResourceGroup}, {@link com.netflix.ribbon.http.HttpResourceGroup.Builder},
+ * 和服务接口的动态代理.它委托给一个默认的{@link com.netflix.ribbon.RibbonResourceFactory}来完成这项工作.
+ * 为了获得更好的可配置性或在启用DI(比如,spring)的应用程序中,建议直接使用{@link com.netflix.ribbon.RibbonResourceFactory}.
  *
  */
 public final class Ribbon {

@@ -22,9 +22,8 @@ import java.net.URI;
 import com.netflix.client.config.IClientConfig;
 
 /**
- * An object that represents a common client request that is suitable for all communication protocol. 
- * It is expected that this object is immutable.
- * 
+ * 表示适用于所有通信协议的通用客户端请求的对象.
+ * 这个对象是不可变的.
  * @author awang
  *
  */

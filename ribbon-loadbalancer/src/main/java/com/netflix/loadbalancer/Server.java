@@ -20,9 +20,7 @@ package com.netflix.loadbalancer;
 import com.netflix.util.Pair;
 
 /**
- * Class that represents a typical Server (or an addressable Node) i.e. a
- * Host:port identifier
- * 
+ * 代表典型服务器(或可寻址节点)的类,即Host:port标识符
  * @author stonse
  * 
  */
@@ -240,10 +238,12 @@ public class Server {
     }
 
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj){
             return true;
-        if (!(obj instanceof Server))
+        }
+        if (!(obj instanceof Server)){
             return false;
+        }
         Server svc = (Server) obj;
         return svc.getId().equals(this.getId());
 

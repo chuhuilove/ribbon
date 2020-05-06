@@ -50,17 +50,17 @@ public class URLConnectionLoadBalancer {
                 }
             }
         }).toBlocking().first();
+
     }
-    
     public LoadBalancerStats getLoadBalancerStats() {
         return ((BaseLoadBalancer) loadBalancer).getLoadBalancerStats();
     }
 
     public static void main(String[] args) throws Exception {
         URLConnectionLoadBalancer urlLoadBalancer = new URLConnectionLoadBalancer(Lists.newArrayList(
-                new Server("www.google.com", 80),
-                new Server("www.linkedin.com", 80),
-                new Server("www.yahoo.com", 80)));
+                new Server("www.baidu.com", 80),
+                new Server("www.163.com", 80),
+                new Server("www.taobao.com", 80)));
         for (int i = 0; i < 6; i++) {
             System.out.println(urlLoadBalancer.call("/"));
         }

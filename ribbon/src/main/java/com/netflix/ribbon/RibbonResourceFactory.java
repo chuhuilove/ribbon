@@ -22,10 +22,9 @@ import com.netflix.ribbon.proxy.RibbonDynamicProxy;
 import com.netflix.ribbon.proxy.processor.AnnotationProcessorsProvider;
 
 /**
- * Factory for creating an HttpResourceGroup or dynamic proxy from an annotated interface.
- * For DI either bind DefaultHttpResourceGroupFactory
- * or implement your own to customize or override HttpResourceGroup.
- * 
+ * 用于从带注解的接口创建HttpResourceGroup或动态代理的工厂.
+ * 对于DI.请绑定DefaultHttpResourceGroupFactory或自定义实现或覆盖HttpResourceGroup.
+ *
  * @author elandau
  */
 public abstract class RibbonResourceFactory {

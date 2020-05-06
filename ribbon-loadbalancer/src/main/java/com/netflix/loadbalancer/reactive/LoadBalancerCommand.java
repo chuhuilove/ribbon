@@ -44,15 +44,14 @@ import com.netflix.loadbalancer.reactive.ExecutionListener.AbortExecutionExcepti
 import com.netflix.servo.monitor.Stopwatch;
 
 /**
- * A command that is used to produce the Observable from the load balancer execution. The load balancer is responsible for
- * the following:
+ * 用于从负载均衡器执行中产生Observable的命令.负载均衡器负责以下各项:
  *
  * <ul>
- * <li>Choose a server</li>
- * <li>Invoke the {@link #call(com.netflix.loadbalancer.Server)} method</li>
- * <li>Invoke the {@link ExecutionListener} if any</li>
- * <li>Retry on exception, controlled by {@link com.netflix.client.RetryHandler}</li>
- * <li>Provide feedback to the {@link com.netflix.loadbalancer.LoadBalancerStats}</li>
+ * <li>选择服务</li>
+ * <li>调用{@link #call(com.netflix.loadbalancer.Server)}方法</li>
+ * <li>调用{@link ExecutionListener},如果有的话</li>
+ * <li>异常重试,通过{@link com.netflix.client.RetryHandler}来控制</li>
+ * <li>提供反馈给{@link com.netflix.loadbalancer.LoadBalancerStats}</li>
  * </ul>
  *
  * @author Allen Wang
@@ -61,6 +60,9 @@ public class LoadBalancerCommand<T> {
     private static final Logger logger = LoggerFactory.getLogger(LoadBalancerCommand.class);
 
     public static class Builder<T> {
+        // 和feign几乎一摸一样的模式......
+        // 使用Builder来整合组件
+
         private RetryHandler        retryHandler;
         private ILoadBalancer       loadBalancer;
         private IClientConfig       config;
@@ -251,11 +253,11 @@ public class LoadBalancerCommand<T> {
     }
 
     /**
-     * Create an {@link Observable} that once subscribed execute network call asynchronously with a server chosen by load balancer.
-     * If there are any errors that are indicated as retriable by the {@link RetryHandler}, they will be consumed internally by the
-     * function and will not be observed by the {@link Observer} subscribed to the returned {@link Observable}. If number of retries has
-     * exceeds the maximal allowed, a final error will be emitted by the returned {@link Observable}. Otherwise, the first successful
-     * result during execution and retries will be emitted.
+     * 创建一个{@link Observable},一旦订阅,它便与负载均衡器选择的服务器异步执行网络调用.
+     * 如果{@link RetryHandler}指示有可重试的错误,则这些错误将由函数在内部消耗,
+     * 并且不会被订阅返回的{@link Observable}的{@link Observer}观察到.
+     * 如果重试次数超过了允许的最大次数,则返回的{@link Observable}将发出一个最终错误.
+     * 否则,将发出执行和重试期间的第一个成功结果.
      */
     public Observable<T> submit(final ServerOperation<T> operation) {
         final ExecutionInfoContext context = new ExecutionInfoContext();

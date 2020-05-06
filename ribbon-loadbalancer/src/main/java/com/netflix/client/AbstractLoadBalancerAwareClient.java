@@ -82,11 +82,10 @@ public abstract class AbstractLoadBalancerAwareClient<S extends ClientRequest, T
     }
 
     /**
-     * This method should be used when the caller wants to dispatch the request to a server chosen by
-     * the load balancer, instead of specifying the server in the request's URI. 
-     * It calculates the final URI by calling {@link #reconstructURIWithServer(com.netflix.loadbalancer.Server, java.net.URI)}
-     * and then calls {@link #executeWithLoadBalancer(ClientRequest, com.netflix.client.config.IClientConfig)}.
-     * 
+     * 当调用方希望将请求分派给负载均衡器选择的服务器时,应使用此方法,而不是在请求的URI中指定服务器.
+     * 它通过调用{@link #reconstructURIWithServer(com.netflix.loadbalancer.Server, java.net.URI)}来计算最终URI,
+     * 然后调用{@link #executeWithLoadBalancer(ClientRequest, com.netflix.client.config.IClientConfig)}.
+     *
      * @param request request to be dispatched to a server chosen by the load balancer. The URI can be a partial
      * URI which does not contain the host name or the protocol.
      */

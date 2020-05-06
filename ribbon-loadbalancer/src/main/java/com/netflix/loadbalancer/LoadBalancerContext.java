@@ -447,14 +447,13 @@ public class LoadBalancerContext implements IClientConfigAware {
     }
 
     /**
-     * Compute the final URI from a partial URI in the request. The following steps are performed:
+     * 根据请求中的部分URI计算最终URI.执行以下步骤:
      * <ul>
-     * <li> if host is missing and there is a load balancer, get the host/port from server chosen from load balancer
-     * <li> if host is missing and there is no load balancer, try to derive host/port from virtual address set with the client
-     * <li> if host is present and the authority part of the URI is a virtual address set for the client, 
-     * and there is a load balancer, get the host/port from server chosen from load balancer
-     * <li> if host is present but none of the above applies, interpret the host as the actual physical address
-     * <li> if host is missing but none of the above applies, throws ClientException
+     * <li> 如果主机丢失并且有负载均衡器,请从负载均衡器中选择服务器获取主机/端口
+     * <li> 如果主机丢失,并且没有负载均衡器,请尝试从与客户端设置的虚拟地址派生主机/端口
+     * <li> 如果存在主机,并且URI的权限部分是为客户端设置的虚拟地址,并且有负载均衡器,请从从负载均衡器中选择的服务器获取主机/端口
+     * <li> 如果存在主机,但以上都不适用,请将该主机解释为实际的物理地址
+     * <li> 如果缺少主机,但以上都不适用,则抛出ClientException
      * </ul>
      *
      * @param original Original URI passed from caller

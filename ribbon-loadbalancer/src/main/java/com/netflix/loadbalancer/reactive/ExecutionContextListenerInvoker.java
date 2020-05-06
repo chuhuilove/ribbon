@@ -29,7 +29,7 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Utility class to invoke the list of {@link ExecutionListener} with {@link ExecutionContext}
+ * 实用程序类,用于通过{@link ExecutionContext}调用{@link ExecutionListener}的列表
  *
  * @author Allen Wang
  */
@@ -132,7 +132,7 @@ public class ExecutionContextListenerInvoker<I, O> {
     }
 
     /**
-     * Called when the request is executed successfully on the server
+     * 在服务器上成功执行请求时调用
      *
      * @param response Object received from the execution
      */
@@ -153,7 +153,7 @@ public class ExecutionContextListenerInvoker<I, O> {
     }
 
     /**
-     * Called when the request is considered failed after all retries.
+     * 在所有重试后认为请求失败时调用.
      *
      * @param finalException Final exception received.
      */
