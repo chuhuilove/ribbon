@@ -20,8 +20,7 @@ package com.netflix.loadbalancer;
 import java.util.List;
 
 /**
- * This interface allows for filtering the configured or dynamically obtained
- * List of candidate servers with desirable characteristics.
+ * 该接口允许过滤具有期望特性的已配置或动态获取的候选服务器列表.
  * 
  * @author stonse
  * 

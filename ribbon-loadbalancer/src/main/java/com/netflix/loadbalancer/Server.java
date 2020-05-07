@@ -21,6 +21,7 @@ import com.netflix.util.Pair;
 
 /**
  * 代表典型服务器(或可寻址节点)的类,即Host:port标识符
+ * 用来描述server节点的一个类
  * @author stonse
  * 
  */
@@ -233,10 +234,11 @@ public class Server {
         return simpleMetaInfo;
     }
 
+    @Override
     public String toString() {
         return this.getId();
     }
-
+    @Override
     public boolean equals(Object obj) {
         if (this == obj){
             return true;
@@ -248,7 +250,7 @@ public class Server {
         return svc.getId().equals(this.getId());
 
     }
-
+    @Override
     public int hashCode() {
         int hash = 7;
         hash = 31 * hash + (null == this.getId() ? 0 : this.getId().hashCode());

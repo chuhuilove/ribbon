@@ -20,10 +20,10 @@ package com.netflix.loadbalancer;
 import com.google.common.base.Optional;
 
 /**
- * A rule which delegates the server filtering logic to an instance of {@link AbstractServerPredicate}.
- * After filtering, a server is returned from filtered list in a round robin fashion.
- * 
- * 
+ *
+ * 将服务器过滤逻辑委托给{@link AbstractServerPredicate}实例的规则.
+ * 过滤后,将以循环方式从过滤列表中返回服务器.
+ *
  * @author awang
  *
  */

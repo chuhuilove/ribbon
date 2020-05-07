@@ -23,8 +23,10 @@ import com.netflix.appinfo.InstanceInfo.PortType;
 import com.netflix.loadbalancer.Server;
 
 /**
- * Servers that were obtained via Discovery and hence contain
- * meta data in the form of InstanceInfo
+ *
+ * 通过发现获得的服务器,因此包含了InstanceInfo形式的元数据.
+ *
+ * 发现启用的服务器
  * @author stonse
  *
  */

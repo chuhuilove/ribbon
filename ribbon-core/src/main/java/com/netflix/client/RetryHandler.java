@@ -32,11 +32,11 @@ public interface RetryHandler {
     
     /**
      * Test if an exception is retriable for the load balancer
+     * 测试负载平衡器是否可以重试异常
      * 
-     * @param e the original exception
-     * @param sameServer if true, the method is trying to determine if retry can be 
-     *        done on the same server. Otherwise, it is testing whether retry can be
-     *        done on a different server
+     * @param e 原始的异常
+     * @param sameServer 如果为true,则该方法正在尝试确定是否可以在同一服务器上完成重试.
+     *                  否则,它将测试是否可以在不同的服务器上进行重试
      */
     public boolean isRetriableException(Throwable e, boolean sameServer);
 

@@ -20,7 +20,7 @@ package com.netflix.loadbalancer;
 import com.netflix.client.config.IClientConfig;
 
 /**
- * Default simple implementation that marks the liveness of a Server
+ * 默认简单实现,可标记服务器的活动状态
  * 
  * @author stonse
  * 

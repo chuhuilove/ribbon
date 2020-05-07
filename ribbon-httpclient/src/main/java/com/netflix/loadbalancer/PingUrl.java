@@ -141,7 +141,7 @@ public class PingUrl implements IPing {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}finally{
-					// Release the connection.
+					// 释放连接.
 					getRequest.abort();
 				}
 

@@ -57,6 +57,7 @@ public class LoadBalancerBuilder<T extends Server> {
 
     public BaseLoadBalancer buildFixedServerListLoadBalancer(List<T> servers) {
         if (rule == null) {
+            // 怎么来设置负载均衡规则的呢?
             rule = createRuleFromConfig(config);
         }
         BaseLoadBalancer lb = new BaseLoadBalancer(config, rule, ping);

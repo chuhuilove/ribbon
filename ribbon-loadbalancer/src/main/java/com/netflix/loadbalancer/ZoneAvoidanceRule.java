@@ -26,35 +26,38 @@ import java.util.Set;
 import com.netflix.client.config.IClientConfig;
 
 /**
+ * 使用{@link CompositePredicate}来基于区域和可用性过滤服务器的规则.
+ * 主要谓词由{@link ZoneAvoidancePredicate}和{@link AvailabilityPredicate}组成,
+ * 包括对{@link AvailabilityPredicate}的回调和从{@link AbstractServerPredicate#alwaysTrue()}返回的"始终为true"谓词.
+ * <p>
  * A rule that uses the a {@link CompositePredicate} to filter servers based on zone and availability. The primary predicate is composed of
  * a {@link ZoneAvoidancePredicate} and {@link AvailabilityPredicate}, with the fallbacks to {@link AvailabilityPredicate}
- * and an "always true" predicate returned from {@link AbstractServerPredicate#alwaysTrue()} 
- * 
- * @author awang
+ * and an "always true" predicate returned from {@link AbstractServerPredicate#alwaysTrue()}
  *
+ * @author awang
  */
 public class ZoneAvoidanceRule extends PredicateBasedRule {
 
     private static final Random random = new Random();
-    
+
     private CompositePredicate compositePredicate;
-    
+
     public ZoneAvoidanceRule() {
         super();
         ZoneAvoidancePredicate zonePredicate = new ZoneAvoidancePredicate(this);
         AvailabilityPredicate availabilityPredicate = new AvailabilityPredicate(this);
         compositePredicate = createCompositePredicate(zonePredicate, availabilityPredicate);
     }
-    
+
     private CompositePredicate createCompositePredicate(ZoneAvoidancePredicate p1, AvailabilityPredicate p2) {
         return CompositePredicate.withPredicates(p1, p2)
-                             .addFallbackPredicate(p2)
-                             .addFallbackPredicate(AbstractServerPredicate.alwaysTrue())
-                             .build();
-        
+                .addFallbackPredicate(p2)
+                .addFallbackPredicate(AbstractServerPredicate.alwaysTrue())
+                .build();
+
     }
-    
-    
+
+
     @Override
     public void initWithNiwsConfig(IClientConfig clientConfig) {
         ZoneAvoidancePredicate zonePredicate = new ZoneAvoidancePredicate(this, clientConfig);
@@ -72,7 +75,7 @@ public class ZoneAvoidanceRule extends PredicateBasedRule {
     }
 
     static String randomChooseZone(Map<String, ZoneSnapshot> snapshot,
-            Set<String> chooseFrom) {
+                                   Set<String> chooseFrom) {
         if (chooseFrom == null || chooseFrom.size() == 0) {
             return null;
         }
@@ -151,7 +154,7 @@ public class ZoneAvoidanceRule extends PredicateBasedRule {
     }
 
     public static Set<String> getAvailableZones(LoadBalancerStats lbStats,
-            double triggeringLoad, double triggeringBlackoutPercentage) {
+                                                double triggeringLoad, double triggeringBlackoutPercentage) {
         if (lbStats == null) {
             return null;
         }
@@ -163,5 +166,5 @@ public class ZoneAvoidanceRule extends PredicateBasedRule {
     @Override
     public AbstractServerPredicate getPredicate() {
         return compositePredicate;
-    }    
+    }
 }

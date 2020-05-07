@@ -37,16 +37,17 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Default client configuration that loads properties from Archaius's ConfigurationManager.
+ * 从Archaius的ConfigurationManager加载属性的默认客户端配置.
  * <p>
- * The easiest way to configure client and load balancer is through loading properties into Archaius that conform to the specific format:
+ * 配置客户端和负载均衡器的最简单方法是将符合特定格式的属性加载到Archaius中:
 
 <pre>{@code
 <clientName>.<nameSpace>.<propertyName>=<value>
 }</pre>
 <p>
-You can define properties in a file on classpath or as system properties. If former, ConfigurationManager.loadPropertiesFromResources() API should be called to load the file.
+ 你可以在类路径的文件中定义属性,也可以将其定义为系统属性. 如果是前者,那么应该调用ConfigurationManager.loadPropertiesFromResources() API来加载文件.
 <p>
-By default, "ribbon" should be the nameSpace.
+默认情况下,"ribbon"应该是nameSpace.
 <p>
 If there is no property specified for a named client, {@code com.netflix.client.ClientFactory} will still create the client and
 load balancer with default values for all necessary properties. The default
@@ -84,7 +85,10 @@ public class DefaultClientConfigImpl implements IClientConfig {
 
     public static final Boolean DEFAULT_PRIORITIZE_VIP_ADDRESS_BASED_SERVERS = Boolean.TRUE;
 
-	public static final String DEFAULT_NFLOADBALANCER_PING_CLASSNAME = "com.netflix.loadbalancer.DummyPing"; // DummyPing.class.getName();
+    /**
+     * DummyPing.class.getName();
+     */
+	public static final String DEFAULT_NFLOADBALANCER_PING_CLASSNAME = "com.netflix.loadbalancer.DummyPing";
 
     public static final String DEFAULT_NFLOADBALANCER_RULE_CLASSNAME = "com.netflix.loadbalancer.AvailabilityFilteringRule";
 

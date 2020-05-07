@@ -38,6 +38,7 @@ public class PingConstant implements IPing {
 				return constant;
 		}
 
+		@Override
 		public boolean isAlive(Server server) {
 				return constant;
 		}

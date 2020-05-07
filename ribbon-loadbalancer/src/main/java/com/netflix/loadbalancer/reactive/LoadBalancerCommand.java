@@ -274,9 +274,8 @@ public class LoadBalancerCommand<T> {
         final int maxRetrysNext = retryHandler.getMaxRetriesOnNextServer();
 
         // Use the load balancer
-        Observable<T> o = 
-                (server == null ? selectServer() : Observable.just(server))
-                .concatMap(new Func1<Server, Observable<T>>() {
+        Observable<Server> serverObservable = server == null ? selectServer() : Observable.just(server);
+        Observable<T> o = serverObservable .concatMap(new Func1<Server, Observable<T>>() {
                     @Override
                     // Called for each server being selected
                     public Observable<T> call(Server server) {

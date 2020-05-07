@@ -23,7 +23,6 @@ import java.util.Map;
  * 定义各种API用于初始化客户端或负载平衡器以及执行方法的客户端配置.默认实现是{@link DefaultClientConfigImpl}.
  * @author awang
  *
- *
  */
 
 public interface IClientConfig {
